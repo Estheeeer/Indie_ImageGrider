@@ -1,4 +1,4 @@
-% developed by Baihan Lin
+% developed by Baihan Lin and Xinxin Zhang
 % June 2016
 
 clear all;
