@@ -1,5 +1,6 @@
 % developed by Baihan Lin and Xinxin Zhang
 % June 2016
+% for creating mosaic effect of images
 
 clear all;
 close all;
