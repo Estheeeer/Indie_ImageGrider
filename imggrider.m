@@ -17,6 +17,8 @@ pathPix = strcat(path, '/pixel');
 pathKey = strcat(path, '/key');
 pathOut = strcat(path, '/out-', date);
 
+system(['mkdir ' pathOut]);
+
 [~,pixList] = system(['find ' pathPix ' -type f -name "*.jpg"']);
 pixs = strsplit(pixList);
 pixs = unique(pixs);
@@ -29,10 +31,10 @@ keys = unique(keys);
 keys = keys(~cellfun('isempty',keys));
 keyNum = length(keys);
 
-pixw = 10;
-pixh = 10;
-keyw = 100;
-keyh = 100;
+pixw = 5;
+pixh = 5;
+keyw = 10;
+keyh = 10;
 
 pixspace = zeros(pixNum, 3);
 
@@ -50,8 +52,12 @@ for pindex = 1 : pixNum
 end
 
 for kindex = 1 : keyNum
+    filename = keys{kindex};
+    indexsep = strfind(filename,'/');
+    last = indexsep(end);
+    fname = strtok(filename(last+1:end), '_');
     
-    origin = imread(keys{kindex});
+    origin = imread(filename);
     I = imresize(origin,[keyw keyh],'bilinear');
     I = double(I);
     dim = size(I);
@@ -71,10 +77,12 @@ for kindex = 1 : keyNum
                 for pindh = 1:pixh
                     origin = imread(pixs{keyspace(w, h, 1)});
                     I = imresize(origin,[pixw pixh],'bilinear');
-                    outspace((w-1)*pixw+pindw,(h-1)*pixh+pindh,:) = I(pindw,pindh,:);
+                    outspace((w-1)*pixw+pindw,(h-1)*pixh+pindh,:) = I(pindw,pindh,:)
                 end
             end
         end
     end
-    figure, imshow(outspace);
+    fig1 = figure;
+    imshow(outspace);
+    saveas(fig1, strcat(pathOut, '/grid-', fname),'jpg');
 end
