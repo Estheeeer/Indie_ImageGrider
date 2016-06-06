@@ -1,9 +1,6 @@
 % developed by Baihan Lin
 % June 2016
 
-
-
-
 prompt = 'Where is your pixel folder?: ';
 disp('e.g.  /Users/DoerLBH/Dropbox/git/Indie_imageGrider/test');
 path = input(prompt,'s');
@@ -21,7 +18,7 @@ pathOut = strcat(path, '/out-', date);
 pixs = strsplit(pixList);
 pixs = unique(pixs);
 pixs = pixs(~cellfun('isempty',pixs));
-pixelNum = length(pixs);
+pixNum = length(pixs);
 
 [~,keyList] = system(['find ' pathKey ' -type f -name "*.jpg"']);
 keys = strsplit(keyList);
@@ -29,27 +26,28 @@ keys = unique(keys);
 keys = keys(~cellfun('isempty',keys));
 keyNum = length(keys);
 
-for pindex = 1 : length(pixs)
+pixw = 100;
+pixh = 100;
+keyw = 1000;
+keyh = 1000;
 
+pixspace = zeros(pixNum, 3);
 
-% I = imread('circuit.tif');
-% avgrgb = mean(mean(I))
-% 
-% J = imresize(I,[10 10],'bilinear');
-% 
-% figure, imshow(K);
-% 
+for pindex = 1 : pixNum
+
+origin = imread(pixs{pindex});
+I = imresize(origin,[pixw pixh],'bilinear');
+avgrgb = mean(mean(I));
+avgr = avgrgb(:,:,1);
+avgg = avgrgb(:,:,2);
+avgb = avgrgb(:,:,3);
+pixspace(pindex,:) = [avgr, avgg, avgb];
 
 end
 
 for kindex = 1 : length(keys)
 
-% I = imread('circuit.tif');
-% avgrgb = mean(mean(I))
-% 
-% J = imresize(I,[10 10],'bilinear');
-% 
-% figure, imshow(K);
-% 
+    origin = imread(keys{pindex});
+
 
 end
