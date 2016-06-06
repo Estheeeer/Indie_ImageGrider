@@ -1,0 +1,7 @@
+% developed by Baihan Lin
+% June 2016
+
+prompt = 'Where is your pixel folder?: ';
+disp('e.g.  /Users/DoerLBH/Dropbox/git/Indie_imageGrider/test');
+path = input(prompt,'s');
+% /Users/DoerLBH/Dropbox/git/OLab_IntanEphys/Data/test
