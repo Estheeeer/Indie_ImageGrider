@@ -52,6 +52,7 @@ for pindex = 1 : pixNum
     
 end
 
+
 for kindex = 1 : keyNum
     filename = keys{kindex};
     indexsep = strfind(filename,'/');
@@ -83,7 +84,7 @@ for kindex = 1 : keyNum
             end
         end
     end
-    fig1 = figure;
-    imshow(outspace);
-    saveas(fig1, strcat(pathOut, '/grid-', fname),'jpg');
 end
+fig1 = figure;
+imshow(outspace);
+saveas(fig1, strcat(pathOut, '/grid-', fname),'jpg');
